@@ -1,74 +1,31 @@
-# Chromatic Tuner 🎸
+# 🎸 Chromatic Tuner
 
-A minimalist chromatic guitar tuner for Android, built with **Kotlin** and **Jetpack Compose**.
+**Chromatic Tuner** — хроматический тюнер для Android с минималистичным тёмным интерфейсом. Работает через микрофон телефона без подключения к интернету.
 
-> **Status: v0.1 — UI prototype.** The tuner screen and launcher icon are implemented, but sound analysis is not available yet. All pitch readings are demo values.
+## Возможности
 
-## v0.1 — Studio Dark UI
+- Определение нот и частоты звука в реальном времени.
+- Отображение отклонения от ноты в центах на шкале настройки.
+- Два режима: **Chromatic** и **Guitar** (шесть струн стандартного строя).
+- Настройка опорной частоты A4 и допустимого отклонения.
+- Управление микрофоном прямо из приложения.
 
-The first version introduces the approved dark interface:
+## Технологии
 
-- Chromatic tuner screen with a graphite background and mint-green accents
-- Note and octave display (`E2`)
-- Frequency display (`84.24 Hz`)
-- Pitch deviation scale from `-50` to `+50` cents
-- Highlighted marker and tuning hint (currently using demo data: `+38 cents`)
-- Visual placeholders for tuning mode, A4 reference frequency, microphone, and settings
-- Custom launcher icon
-- Layout designed for different phone heights
+Kotlin · Jetpack Compose · Android AudioRecord · Gradle
 
-**Not implemented yet:** microphone capture, real-time pitch detection, automatic note recognition, and interactive tuning settings. The microphone is off in v0.1.
+## Сборка
 
-## Tech stack
+Нужны **JDK 17**, **Android SDK** и настроенная переменная `ANDROID_HOME`.
 
-- **Language:** Kotlin
-- **UI:** Jetpack Compose / Material 3
-- **Build:** Gradle with Kotlin DSL
-- **Platform:** Android (minimum API 26; compile SDK 36)
-- **Development:** VS Code, PowerShell, Git, and GitHub
-
-## Build
-
-Requirements:
-
-- JDK 17
-- Android SDK Platform 36 and compatible Android SDK Build Tools
-- `ANDROID_HOME` configured to point to your Android SDK
-
-Clone the repository from GitHub and, in its root directory, run:
+В корне проекта на Windows выполните:
 
 ```powershell
-git switch feature/tuner-ui
 .\gradlew.bat assembleDebug
 ```
 
-Until the UI changes are merged into `main`, use `feature/tuner-ui` to build v0.1.
+APK появится в `app/build/outputs/apk/debug/app-debug.apk`.
 
-The debug APK will be generated at:
+## Версия
 
-```text
-app/build/outputs/apk/debug/app-debug.apk
-```
-
-To install it on a connected Android device with USB debugging enabled:
-
-```powershell
-& "$env:ANDROID_HOME\platform-tools\adb.exe" install -r ".\app\build\outputs\apk\debug\app-debug.apk"
-```
-
-## Roadmap
-
-- [x] Set up Android project and Gradle build
-- [x] Build Studio Dark tuner UI
-- [x] Add custom launcher icon
-- [ ] Capture audio from the microphone
-- [ ] Detect fundamental frequency and chromatic notes
-- [ ] Display live tuning deviation in cents
-- [ ] Add working mode and reference-frequency controls
-- [ ] Test pitch detection and calibration on physical devices
-
-## Development
-
-UI work is developed in the `feature/tuner-ui` branch before being merged into `main`.
-
-This is a learning project focused on Android development, Kotlin, and Git workflows.
+**1.0.0** — первая рабочая версия тюнера.
