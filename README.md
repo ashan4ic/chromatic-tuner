@@ -1,75 +1,74 @@
-# 🎸 Chromatic Tuner
+# Chromatic Tuner 🎸
 
-A chromatic guitar tuner for Android, developed with Kotlin and Jetpack Compose.
+A minimalist chromatic guitar tuner for Android, built with **Kotlin** and **Jetpack Compose**.
 
-The goal is to build a lightweight, accurate and modern tuner with real-time pitch detection, a responsive interface and offline functionality.
+> **Status: v0.1 — UI prototype.** The tuner screen and launcher icon are implemented, but sound analysis is not available yet. All pitch readings are demo values.
 
-## Project Status
+## v0.1 — Studio Dark UI
 
-**In Development — Initial Android Setup**
+The first version introduces the approved dark interface:
 
-The Android project has been initialized, and the first debug APK builds successfully.
+- Chromatic tuner screen with a graphite background and mint-green accents
+- Note and octave display (`E2`)
+- Frequency display (`84.24 Hz`)
+- Pitch deviation scale from `-50` to `+50` cents
+- Highlighted marker and tuning hint (currently using demo data: `+38 cents`)
+- Visual placeholders for tuning mode, A4 reference frequency, microphone, and settings
+- Custom launcher icon
+- Layout designed for different phone heights
 
-The current version contains the starter application interface. Audio processing and tuning functionality have not yet been implemented.
+**Not implemented yet:** microphone capture, real-time pitch detection, automatic note recognition, and interactive tuning settings. The microphone is off in v0.1.
 
-## Planned Features
-
-- [ ] Chromatic pitch detection for all 12 notes
-- [ ] Real-time microphone input
-- [ ] Frequency detection in Hz
-- [ ] Tuning accuracy display in cents
-- [ ] Animated tuning indicator
-- [ ] Standard guitar tuning mode (E–A–D–G–B–E)
-- [ ] Adjustable reference frequency (A4 = 440 Hz)
-- [ ] Dark-themed user interface
-- [ ] Offline operation
-
-## Technology Stack
+## Tech stack
 
 - **Language:** Kotlin
-- **UI:** Jetpack Compose
-- **Build System:** Gradle (Kotlin DSL)
-- **Platform:** Android
-- **Minimum Android Version:** Android 8.0 (API 26)
-- **Compile SDK:** Android API 36
+- **UI:** Jetpack Compose / Material 3
+- **Build:** Gradle with Kotlin DSL
+- **Platform:** Android (minimum API 26; compile SDK 36)
+- **Development:** VS Code, PowerShell, Git, and GitHub
 
-## Building the Project
+## Build
 
-### Requirements
+Requirements:
 
 - JDK 17
-- Android SDK Platform 36
-- Android SDK Build Tools
-- Android SDK Platform Tools
-- Git
+- Android SDK Platform 36 and compatible Android SDK Build Tools
+- `ANDROID_HOME` configured to point to your Android SDK
 
-Set the `ANDROID_HOME` environment variable to your local Android SDK directory.
+Clone the repository from GitHub and, in its root directory, run:
 
-### Build Debug APK
+```powershell
+git switch feature/tuner-ui
+.\gradlew.bat assembleDebug
+```
 
-Clone the repository, open the project directory in a terminal, and run:
+Until the UI changes are merged into `main`, use `feature/tuner-ui` to build v0.1.
 
-`.\gradlew.bat assembleDebug`
+The debug APK will be generated at:
 
-The generated APK will be located at:
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
 
-`app/build/outputs/apk/debug/app-debug.apk`
+To install it on a connected Android device with USB debugging enabled:
 
-### Install via ADB
+```powershell
+& "$env:ANDROID_HOME\platform-tools\adb.exe" install -r ".\app\build\outputs\apk\debug\app-debug.apk"
+```
 
-Connect an Android device with USB debugging enabled and run:
+## Roadmap
 
-`adb install -r app/build/outputs/apk/debug/app-debug.apk`
+- [x] Set up Android project and Gradle build
+- [x] Build Studio Dark tuner UI
+- [x] Add custom launcher icon
+- [ ] Capture audio from the microphone
+- [ ] Detect fundamental frequency and chromatic notes
+- [ ] Display live tuning deviation in cents
+- [ ] Add working mode and reference-frequency controls
+- [ ] Test pitch detection and calibration on physical devices
 
-## Development Roadmap
+## Development
 
-1. Project setup and first successful Android build
-2. Tuner interface implementation
-3. Microphone input and audio capture
-4. Pitch detection algorithm
-5. Chromatic note recognition and tuning accuracy
-6. UI improvements and real-device testing
+UI work is developed in the `feature/tuner-ui` branch before being merged into `main`.
 
-## Development Environment
-
-The project is developed using Visual Studio Code, PowerShell, Git and GitHub, without requiring Android Studio.
+This is a learning project focused on Android development, Kotlin, and Git workflows.
